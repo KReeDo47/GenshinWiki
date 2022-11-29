@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+mongoose.connect('mongodb://127.0.0.1:27017/test1')
 var Mystic = require("./models/mystic").Mystic
 
 var mystic = new Mystic({
@@ -9,6 +9,6 @@ var mystic = new Mystic({
 
 console.log(mystic)
 mystic.save(function(err, mystic, affected){
-console.log(arguments)    
+console.log(mystic.title)    
 })
 
