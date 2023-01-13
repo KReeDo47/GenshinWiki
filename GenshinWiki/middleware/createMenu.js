@@ -1,4 +1,3 @@
-var Mystic = require("./../models/mystic").Mystic
 var db = require('../mySQLConnect')
 
 module.exports = function(req,res,next){
