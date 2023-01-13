@@ -1,11 +1,24 @@
 <% layout('./layout/page.ejs') %>
-
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<p>Счётчик: <%= counter %></p>
-<% if(user) {%>
-    // Случай залогиненного пользователя
-   <% }else{ %>
-    // Случай не залогиненного пользователя
-   <% } %>
+<div class="main_page">
+    <div class="log_massage">
+        <% if(user.length > 0) {%>
+            <!-- Случай залогиненного пользователя -->
+            <div class="log">
+                <h3 class="log">Привет <%= users[0].username %>!</h3>
+            </div>
+           <% }else{ %>
+            <!-- Случай не залогиненного пользователя -->
+            <div class="notlog">
+                <h3 class="notlog">Для просмотра всех страниц сайта, пройдите регистрацию!</h3>
+            </div>
+           <% } %>
+    </div>
+    
+    <div class="about_page">
+        <h1><%= title %></h1>
+        <p><%= text %></p>
+    </div>
+    
+    <p>Счётчик переходов: <%= counter %></p>
+</div>
    
