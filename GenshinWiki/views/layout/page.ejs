@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= (typeof title != "undefined" ? title : "") %></title> 
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid" id="container">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Главная</a>
-            </li>
-            <% if(typeof nav=='object' && nav){ nav.forEach(function(Mystic){ %>
-              <li class="nav-item">
-                <a class="nav-link" href="/mystics/<%=Mystic.nick%>">
-                  <%=Mystic.title%>
-                </a>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="/images/Heydzo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="webpage">
+      <header>
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="navbar-nav navbar-left"> 
+                <a class="nav-link" href="/">Главная</a>
               </li>
-              <% })} %>
-          </ul>
-          <ul class="navbar-nav navbar-right">
-            <%if(user){%>
-              <a href="/logreg" class="nav-item nav-link">Войти</a>
-              </form>
-              <% } else { %>
+            </ul>
+            <ul class="navbar-nav">
+                <% if(typeof nav == 'object' && nav){ nav.forEach(function(mystic){ %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/mystic/<%= mystic.nick %>"><%= mystic.title %></a>
+                  </li>
+                <% })} %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <%if(user.length > 0){%>
                 <form action="/logout" method="post">
-                <button type="submit" class="btn btn-link">Выйти</button>
+                  <li>
+                    <button type="submit" class="btn btn-link">Выйти</button>
+                  </li>
+                </form>
+              <% } else { %>
+                  <li>
+                    <a href="/logreg">Войти</a>
+                  </li>
               <% } %>
-        </ul>
-        </div>
-      </nav>
+          </ul>
+          
+          </div>
+        </nav>
+      </header>
   
-  <%- body %>
-</body>
+      <main>
+        <%- body %>
+      </main>  
+
+      <footer>
+        <div> 
+          <h4>Express project "Mystics"</h4>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
